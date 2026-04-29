@@ -11,6 +11,10 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import { store } from './src/store';
+import UserList from './src/components/UserList';
+import AddUserHeader from './src/components/AddUserHeader';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -27,12 +31,10 @@ function AppContent() {
   const safeAreaInsets = useSafeAreaInsets();
 
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
+    <Provider store={store}>
+      <UserList/>
+      <AddUserHeader />
+    </Provider>
   );
 }
 
